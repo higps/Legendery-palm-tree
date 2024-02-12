@@ -15,10 +15,6 @@ def filter_num(file_path):
                 even_num.append(i)
 
     return (even_num)
-    
-
-
 
 even_num_list = filter_num("array.json")
-
 print(f"Sum av partall: {sum(even_num_list)}")
