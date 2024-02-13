@@ -16,5 +16,6 @@ def filter_num(file_path):
 
     return (even_num)
 
-even_num_list = filter_num("array.json")
+even_num_list = filter_num(r"Oppgave 2\array.json")
+print("Partall:", even_num_list)
 print(f"Sum av partall: {sum(even_num_list)}")

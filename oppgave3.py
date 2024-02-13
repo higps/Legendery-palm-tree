@@ -1,19 +1,14 @@
 import os
-
 # kan spesifisere path valgfritt, om ikke noen path er gitt så går den bare ut ifra der .py filen ligger
-def get_all_files(directory=None):
-
-    if directory is None:
-        directory = os.path.dirname(os.path.abspath(__file__))
+def get_all_files(directory):
 
     files_list = []
-
+    # bruker os.walk til å gjennom alle mapper og undermapper, tar så pathen og legger til i en liste, her inneholder pathen file extension også
     for root, dirs, files in os.walk(directory):
         for file_name in files:
-
-            # bruker relative path så det ikke har noe å si hvor koden kjører fra
-            relative_path = os.path.relpath(os.path.join(root, file_name), directory)
-            files_list.append(relative_path)
+            
+            path = os.path.join(root, file_name)
+            files_list.append(path)
 
     return files_list
 
@@ -24,6 +19,7 @@ def find_pattern_in_files(files, pattern, extension):
     extension_list = []
     result_dict = {}
     for file in files:
+
         with open(file, 'r', encoding='utf-8') as f:
             content = f.read()
             if pattern in content:
@@ -41,12 +37,12 @@ def find_pattern_in_files(files, pattern, extension):
     result_dict[extension] = extension_list
     return result_dict
 
-
 pattern = "Sommer"
 extension = 'txt'
-files = get_all_files()
+folder = "Oppgave 3"
 
+files = get_all_files(directory=folder)
 result = find_pattern_in_files(files, pattern, extension)
 
-print(f"Filer som matcher mønster: {len(result[pattern])}")
+print(f"Filer som matcher mønster {pattern}: {len(result[pattern])}")
 print(f"Filer av typen .{extension}: {len(result[extension])}")

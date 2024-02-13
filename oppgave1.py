@@ -14,8 +14,8 @@ def reverse_string(file_path):
         
         return reversed_list
 
-# Construct full path to the file
-file_path = os.path.join(os.getcwd(), "Oppgave 1\\file.txt")
+reversed_words = reverse_string(r"Oppgave 1\file.txt")
 
-print(reverse_string(file_path))
+for word in reversed_words:
+    print(word)
 
